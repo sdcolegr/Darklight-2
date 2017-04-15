@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	public TileManager tileScript;
+	public WaveManager waveScript;
+	//public GameObject player;
 	
-	private int level = 0;
+	private int wave = 1;
 	
 	void Awake() {
 		if (instance == null) {
@@ -17,11 +19,14 @@ public class GameManager : MonoBehaviour {
 		}
 		DontDestroyOnLoad(gameObject);
 		tileScript = GetComponent<TileManager>();
+		waveScript = GetComponent<WaveManager>();
 		InitGame();
 	}
 	
 	void InitGame() {
-		tileScript.SetupScene(level);
+		//player = Instantiate(player, new Vector2(24,24), Quaternion.identity) as GameObject;
+		waveScript.setupWave(wave);
+		tileScript.SetupScene(wave);
 	}
 
 	// Update is called once per frame

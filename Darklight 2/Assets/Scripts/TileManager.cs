@@ -39,7 +39,7 @@ public class TileManager : MonoBehaviour {
 		
 		for (int x = 0; x < columns; x += 1) {
 			for (int y = 0; y < rows; y += 1) {
-				gridPositions.Add(new Vector3(x, y, 0f));
+				gridPositions.Add(new Vector2(x, y));
 			}
 		}
 	}
@@ -71,18 +71,18 @@ public class TileManager : MonoBehaviour {
 					toInstantiate = stone;				
 					if (Random.value > 0.95) {
 						tileToInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-						GameObject tileInstance = Instantiate(tileToInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+						GameObject tileInstance = Instantiate(tileToInstantiate, new Vector2 (x, y), Quaternion.identity) as GameObject;
 						tileInstance.transform.SetParent(boardHolder);
 					}
 				}
 				
-				GameObject instance = Instantiate(toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+				GameObject instance = Instantiate(toInstantiate, new Vector2 (x, y), Quaternion.identity) as GameObject;
 				instance.transform.SetParent(boardHolder);
 			}
 		}
 	}
 	
-	public void SetupScene(int level) {
+	public void SetupScene(int wave) {
 		BoardSetup();
 		InitializeList();
 	}
