@@ -32,7 +32,7 @@ public class TileManager : MonoBehaviour {
 	public GameObject[] floorTiles;
 	
 	private Transform boardHolder;
-	private List <Vector3> gridPositions = new List<Vector3>();
+	private List <Vector2> gridPositions = new List<Vector2>();
 	
 	void InitializeList() {
 		gridPositions.Clear();
