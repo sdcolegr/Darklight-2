@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 	public TileManager tileScript;
 	public WaveManager waveScript;
-	//public GameObject player;
-	
+
 	private int wave = 1;
 	
 	void Awake() {
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void InitGame() {
-		//player = Instantiate(player, new Vector2(24,24), Quaternion.identity) as GameObject;
 		waveScript.setupWave(wave);
 		tileScript.SetupScene(wave);
 	}
