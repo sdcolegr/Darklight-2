@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void InitGame() {
-		waveScript.setupWave(wave);
+		//waveScript.setupWave(wave);
 		tileScript.SetupScene(wave);
 	}
 
