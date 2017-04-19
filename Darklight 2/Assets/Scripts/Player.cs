@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Die() {
-		print("Dead");
+		//print("Dead");
 	}
 	
 	void SubtractHealth(int damage) {
