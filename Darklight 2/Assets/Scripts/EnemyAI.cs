@@ -6,7 +6,6 @@ public class EnemyAI : MonoBehaviour {
 
 	public GameObject player;
 	public float speed = 2f;
-	public float playerDistance;
 	public bool attacking;
 	public int health;
 	public int damage;
@@ -20,9 +19,11 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed*Time.deltaTime);
+		float playerDistance = Vector2.Distance(player.transform.position, transform.position);
+
+		if (playerDistance > 1.05f)
+			transform.position = Vector2.MoveTowards(transform.position,player.transform.position, speed*Time.deltaTime);
 		
-		playerDistance = Vector2.Distance(player.transform.position, transform.position);
 		if (playerDistance <= 2) {
 			if (!attacking) {
 				Invoke("ApplyDamage", 3);
@@ -42,9 +43,9 @@ public class EnemyAI : MonoBehaviour {
 	void Die() {
 		print("EnDead");
 	}
-	void SubtractEnemyHealth() {
+	void SubtractEnemyHealth(int damage) {
 
-		health-=25;
+		health -= damage;
 	}
 	
 }

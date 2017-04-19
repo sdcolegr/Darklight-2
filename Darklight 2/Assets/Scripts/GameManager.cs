@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void InitGame() {
-		//player = Instantiate(player, new Vector2(24,24), Quaternion.identity) as GameObject;
 		waveScript.setupWave(wave);
 		tileScript.SetupScene(wave);
 	}

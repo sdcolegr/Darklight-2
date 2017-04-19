@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour {
-	public GameObject attack;
-	public bool attacking;
+	
 	public GameObject enemy;
 	public float enemyDistance;
+	private float attackTimer;
 	public float cooldown = 0.3f;
+	public int damage;
 	
 	// Use this for initialization
 	void Start () {
-		attacking = false;
-		
+		attackTimer = 0;
+		damage  = 25;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButton("z")) {
+		if (attackTimer > 0) attackTimer -= Time.deltaTime;
+		if (attackTimer < 0) attackTimer = 0;
+		if (Input.GetKeyUp(KeyCode.Z) && attackTimer == 0) {
 			enemyDistance = Vector2.Distance(enemy.transform.position, transform.position);
 			if (enemyDistance <= 2) {
-				if (!attacking) {
-					Invoke("ApplyDamage", 3);
-					attacking = true;
-				}
+				ApplyDamage();
+				attackTimer = cooldown;
 			}
 		}
 	}
 	
 	void ApplyDamage() {
-		enemy.SendMessage("SubtractEnemeyHealth", SendMessageOptions.RequireReceiver);
-		attacking = false;
+		enemy.SendMessage("SubtractEnemyHealth", damage, SendMessageOptions.RequireReceiver);
 	}
 }
