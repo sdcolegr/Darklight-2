@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour {
 	
-	public GameObject enemy;
-	public float enemyDistance;
+	public GameObject[] enemies;
 	private float attackTimer;
 	public float cooldown = 0.3f;
 	public int damage;
@@ -14,6 +13,7 @@ public class Attack : MonoBehaviour {
 	void Start () {
 		attackTimer = 0;
 		damage  = 25;
+		AddEnemies();
 	}
 	
 	// Update is called once per frame
@@ -21,15 +21,21 @@ public class Attack : MonoBehaviour {
 		if (attackTimer > 0) attackTimer -= Time.deltaTime;
 		if (attackTimer < 0) attackTimer = 0;
 		if (Input.GetKeyUp(KeyCode.Z) && attackTimer == 0) {
-			enemyDistance = Vector2.Distance(enemy.transform.position, transform.position);
-			if (enemyDistance <= 2) {
-				ApplyDamage();
-				attackTimer = cooldown;
+			for (int i = 0; i < enemies.Length; i++) {
+				float enemyDistance = Vector2.Distance(enemies[i].transform.position, transform.position);
+				if (enemyDistance < 1.5f) {
+					ApplyDamage(enemies[i]);
+					attackTimer = cooldown;
+				}
 			}
 		}
 	}
 	
-	void ApplyDamage() {
+	public void AddEnemies() {
+		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+	} 
+	
+	void ApplyDamage(GameObject enemy) {
 		enemy.SendMessage("SubtractEnemyHealth", damage, SendMessageOptions.RequireReceiver);
 	}
 }
