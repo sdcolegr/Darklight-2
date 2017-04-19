@@ -43,9 +43,8 @@ public class EnemyAI : MonoBehaviour {
 	void Die() {
 		//print("EnDead");
 	}
-	void SubtractEnemyHealth(int damage) {
+	public void SubtractEnemyHealth(int damage) {
 
 		health -= damage;
 	}
-	
 }

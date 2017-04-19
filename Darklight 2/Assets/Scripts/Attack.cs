@@ -30,22 +30,12 @@ public class Attack : MonoBehaviour {
          }
 		
 		if (Input.GetKeyUp(KeyCode.Z) && attackTimer == 0) {
-		 anim.SetBool("Attacking",false);
-			for (int i = 0; i < enemies.Length; i++) {
-				float enemyDistance = Vector2.Distance(enemies[i].transform.position, transform.position);
-				if (enemyDistance < 1.5f) {
-					ApplyDamage(enemies[i]);
-					attackTimer = cooldown;
-				}
-			}
+			anim.SetBool("Attacking",false);
+			attackTimer = cooldown;
 		}
 	}
 	
 	public void AddEnemies() {
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
 	} 
-	
-	void ApplyDamage(GameObject enemy) {
-		enemy.SendMessage("SubtractEnemyHealth", damage, SendMessageOptions.RequireReceiver);
-	}
 }

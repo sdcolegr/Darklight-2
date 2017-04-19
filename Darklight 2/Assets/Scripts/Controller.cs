@@ -20,7 +20,7 @@ Animator anim;
 	void FixedUpdate () {
 	
 		
-		anim.SetFloat("speed",playerSpeed);
+		//anim.SetFloat("speed",playerSpeed);
 		
 		if(Input.GetKey("up"))//Press up arrow key to move forward on the Y AXIS
 		{
@@ -54,9 +54,11 @@ Animator anim;
 				
 			
 		}
+
 		Debug.Log(direction);
 		
 		if(!Input.anyKey)
 			anim.SetBool("Walking",false);
+
 	}
 }
