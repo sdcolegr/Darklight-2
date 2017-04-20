@@ -55,7 +55,6 @@ Animator anim;
 			
 		}
 
-		Debug.Log(direction);
 		
 		if(!Input.anyKey)
 			anim.SetBool("Walking",false);
