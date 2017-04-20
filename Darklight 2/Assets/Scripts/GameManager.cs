@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 	public TileManager tileScript;
 	public WaveManager waveScript;
-
+	//public GameObject player;
+	
 	private int wave = 1;
 	
 	void Awake() {
